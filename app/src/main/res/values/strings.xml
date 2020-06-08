@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BluetoothHC05</string>
+    <string name="layout_margin">10dp</string>
 </resources>

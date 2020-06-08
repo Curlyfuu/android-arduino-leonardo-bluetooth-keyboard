@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TouchPadActivity">
+
+    <LinearLayout
+        android:id="@+id/activity_main"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Touch Pad"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            android:textAlignment="center">
+        </TextView>
+
+
+
+
+        <com.example.danyal.bluetoothhc05.TestView
+            android:id="@+id/testView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="1dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/button_lb"
+                android:layout_width="wrap_content"
+                android:background="@drawable/shape"
+                android:layout_margin="5dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:text="左键"/>
+
+
+            <Button
+                android:id="@+id/button_middle"
+                android:layout_width="wrap_content"
+                android:background="@drawable/shape"
+                android:layout_margin="5dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:text="滚轮"/>
+            <Button
+                android:id="@+id/button_rb"
+                android:layout_width="wrap_content"
+                android:background="@drawable/shape"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="右键"/>
+        </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp">
+        <Button
+            android:id="@+id/button_mdis"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/shapered"
+            android:text="断开连接"/>
+        <Button
+            android:id="@+id/button_mup"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:background="@drawable/shape"
+            android:text="▲"/>
+        <Button
+            android:id="@+id/button_mdown"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:background="@drawable/shape"
+            android:text="▼"/>
+    </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

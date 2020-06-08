@@ -19,12 +19,14 @@ import java.util.Set;
 public class DeviceList extends AppCompatActivity {
 
     Button btnPaired;
+//    TextView textView_label;
     ListView devicelist;
 
     private BluetoothAdapter myBluetooth = null;
     private Set<BluetoothDevice> pairedDevices;
+    private boolean torC = false;
     public static String EXTRA_ADDRESS = "device_address";
-
+    Button btn_tpad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +36,10 @@ public class DeviceList extends AppCompatActivity {
         devicelist = (ListView) findViewById(R.id.listView);
 
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
-        if ( myBluetooth==null ) {
+        if (myBluetooth == null) {
             Toast.makeText(getApplicationContext(), "Bluetooth device not available", Toast.LENGTH_LONG).show();
             finish();
-        } else if ( !myBluetooth.isEnabled() ) {
+        } else if (!myBluetooth.isEnabled()) {
             Intent turnBTon = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(turnBTon, 1);
         }
@@ -48,14 +50,28 @@ public class DeviceList extends AppCompatActivity {
                 pairedDevicesList();
             }
         });
+        btn_tpad = (Button) findViewById(R.id.button_tpad);
+//        textView_label = (TextView) findViewById(R.id.textview_label);
+        btn_tpad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                torC = !torC;
+                if(torC){
+                    btn_tpad.setText("PPT");
+                }else{
+                    btn_tpad.setText("TPAD");
+                }
+            }
+        });
+
     }
 
-    private void pairedDevicesList () {
+    private void pairedDevicesList() {
         pairedDevices = myBluetooth.getBondedDevices();
         ArrayList list = new ArrayList();
 
-        if ( pairedDevices.size() > 0 ) {
-            for ( BluetoothDevice bt : pairedDevices ) {
+        if (pairedDevices.size() > 0) {
+            for (BluetoothDevice bt : pairedDevices) {
                 list.add(bt.getName().toString() + "\n" + bt.getAddress().toString());
             }
         } else {
@@ -71,9 +87,12 @@ public class DeviceList extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String info = ((TextView) view).getText().toString();
-            String address = info.substring(info.length()-17);
+            String address = info.substring(info.length() - 17);
 
-            Intent i = new Intent(DeviceList.this, ledControl.class);
+                Intent i = new Intent(DeviceList.this, TouchPadActivity.class);
+            if(torC){
+                i = new Intent(DeviceList.this, PPTControlActivity.class);
+            }
             i.putExtra(EXTRA_ADDRESS, address);
             startActivity(i);
         }
