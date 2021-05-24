@@ -48,26 +48,27 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="125dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="选择功能"
-                    android:textColor="@android:color/black"
                     android:textAlignment="center"
+                    android:textColor="@android:color/black"
                     android:textSize="20sp">
 
                 </TextView>
-            <Button
-                android:id="@+id/button_tpad"
-                android:layout_width="140dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/shape"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="TPad">
-            </Button>
+
+                <Button
+                    android:id="@+id/button_tpad"
+                    android:layout_width="140dp"
+                    android:layout_height="63dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/shape"
+                    android:text="PPT"></Button>
 
             </LinearLayout>
 

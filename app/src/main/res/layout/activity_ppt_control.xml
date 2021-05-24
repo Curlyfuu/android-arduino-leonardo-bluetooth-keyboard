@@ -26,7 +26,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
                 android:text="PPT Control"
                 android:textAlignment="center"
                 android:textSize="30sp"
@@ -38,7 +39,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal">
 
             <Button
@@ -97,7 +98,7 @@
                 android:layout_weight="1"
                 android:height="60dp"
                 android:background="@drawable/shape"
-                android:text="⇇桌面"
+                android:text="◄桌面"
                 tools:layout_editor_absoluteX="192dp"
                 tools:layout_editor_absoluteY="64dp" />
 
@@ -110,7 +111,7 @@
                 android:layout_weight="1"
                 android:height="60dp"
                 android:background="@drawable/shape"
-                android:text="桌面⇉"
+                android:text="桌面►"
                 tools:layout_editor_absoluteX="192dp"
                 tools:layout_editor_absoluteY="64dp" />
         </LinearLayout>
@@ -129,8 +130,8 @@
                 android:layout_weight="1"
                 android:height="80dp"
                 android:background="@drawable/shape"
-                android:text="^"
-                android:textSize="50sp"
+                android:text="▲"
+                android:textSize="40sp"
                 tools:layout_editor_absoluteX="61dp"
                 tools:layout_editor_absoluteY="134dp" />
         </LinearLayout>
@@ -149,10 +150,12 @@
                 android:layout_weight="1"
                 android:height="60dp"
                 android:background="@drawable/shape"
-                android:text="&lt;"
+                android:text="◄"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="91dp"
                 tools:layout_editor_absoluteY="168dp" />
+
 
             <Button
                 android:id="@+id/button_right"
@@ -163,8 +166,9 @@
                 android:layout_weight="1"
                 android:height="60dp"
                 android:background="@drawable/shape"
-                android:text="&gt;"
+                android:text="►"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="91dp"
                 tools:layout_editor_absoluteY="168dp" />
         </LinearLayout>
@@ -183,9 +187,8 @@
                 android:layout_weight="1"
                 android:height="80dp"
                 android:background="@drawable/shape"
-                android:text="v"
-                android:textSize="26sp"
-                android:textStyle="bold"
+                android:text="▼"
+                android:textSize="40sp"
                 tools:layout_editor_absoluteX="112dp"
                 tools:layout_editor_absoluteY="336dp" />
         </LinearLayout>
@@ -197,51 +200,32 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_dis"
+                android:id="@+id/button_lazer"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:layout_weight="16"
-                android:height="50dp"
+                android:layout_weight="8"
+                android:height="60dp"
                 android:background="@drawable/shapered"
-                android:text="Disconnect"
+                android:text="激光笔"
                 tools:layout_editor_absoluteX="108dp"
                 tools:layout_editor_absoluteY="154dp" />
 
-            <LinearLayout
+            <Button
+                android:id="@+id/button_flymouse"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_margin="5dp"
+                android:layout_weight="8"
+                android:height="60dp"
+                android:background="@drawable/shape"
+                android:text="飞控"
+                tools:layout_editor_absoluteX="108dp"
+                tools:layout_editor_absoluteY="154dp" />
 
-                <Button
-                    android:id="@+id/button_alt"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:height="50dp"
-                    android:background="@drawable/shape"
-                    android:text="ALT OFF"
-                    tools:layout_editor_absoluteX="108dp"
-                    tools:layout_editor_absoluteY="154dp" />
 
-                <Button
-                    android:id="@+id/button_tab"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:height="50dp"
-                    android:background="@drawable/shape"
-                    android:text="Tab"
-                    tools:layout_editor_absoluteX="108dp"
-                    tools:layout_editor_absoluteY="154dp" />
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

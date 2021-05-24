@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Android-App-HC05-Arduino.iml" filepath="$PROJECT_DIR$/Android-App-HC05-Arduino.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-App-HC05-Arduino.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-App-HC05-Arduino.app.iml" />
     </modules>
   </component>
 </project>

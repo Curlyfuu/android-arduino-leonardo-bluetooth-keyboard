@@ -7,4 +7,5 @@ public interface TouchListener {
     void onTouchMove(int x, int y);     //手指滑动事件
 
     void onTouchUp(int x, int y);       //手指弹起事件
+
 }

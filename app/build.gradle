@@ -1,15 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 25
+//    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.example.danyal.bluetoothhc05"
-        minSdkVersion 15
-        targetSdkVersion 29
+        minSdkVersion 16
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
     buildTypes {
         release {
@@ -25,7 +26,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //noinspection GradleCompatible
+//    implementation 'com.android.support:appcompat-v7:26.+'
     implementation 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.jakewharton:butterknife:7.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.13'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 }

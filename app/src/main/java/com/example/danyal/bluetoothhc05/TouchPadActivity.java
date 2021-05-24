@@ -9,15 +9,19 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.UUID;
 
+import static java.lang.Math.abs;
+
 
 public class TouchPadActivity extends AppCompatActivity {
-//    Button btn_up, btn_dwn, btn_dis, btn_lb, btn_rb, btn_mid;
+    //    Button btn_up, btn_dwn, btn_dis, btn_lb, btn_rb, btn_mid;
     TestView view;
     private static final String TAG = "HELLO";
     String address = null;
@@ -26,11 +30,15 @@ public class TouchPadActivity extends AppCompatActivity {
     BluetoothSocket btSocket = null;
     private boolean isBtConnected = false;
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    private float  cur_x, cur_y;     //当前座标
+    private float cur_x, cur_y;     //当前座标
+    private float cur_x_old, cur_y_old;     //当前座标
     private float downX, downY;     //手指按下的座标
     private float endX, endY;       //手指抬起座标
     private float detaX, detaY;     //座标增量
+    double[] arrx = new double[3];
+    double[] arry = new double[3];
     boolean xyturn = false;
+    int xyindex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +49,27 @@ public class TouchPadActivity extends AppCompatActivity {
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
         new ConnectBT().execute();
-        findViewById(R.id.button_lb).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendSignal("*C1\n");
+//        findViewById(R.id.button_lb).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                sendSignal("*C1\n");
+//            }
+//        });
+        findViewById(R.id.button_lb).setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (v.getId() == R.id.button_lb) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        sendSignal("*C^\n");
+                    }
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        sendSignal("*Cv\n");
+                    }
+                }
+                return false;
             }
+
         });
+
         findViewById(R.id.button_middle).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,10 +102,9 @@ public class TouchPadActivity extends AppCompatActivity {
         });
 
 
-        view =(TestView)findViewById(R.id.testView);
+        view = (TestView) findViewById(R.id.testView);
 
         view.setTouchListener(new TouchEvent());
-
 //        Button btnClearResult = (Button)findViewById(R.id.btn_clear_result);
 //        Button btnClearTest = (Button)findViewById(R.id.btn_clear_test);
 
@@ -91,6 +113,8 @@ public class TouchPadActivity extends AppCompatActivity {
 //        btnClearResult.setOnClickListener(eventClick);
 //        btnClearTest.setOnClickListener(eventClick);
     }
+
+
 //    private class EventClick implements View.OnClickListener {
 //
 //        @Override
@@ -107,17 +131,19 @@ public class TouchPadActivity extends AppCompatActivity {
 //        }
 //    }
 
-    private class TouchEvent implements TouchListener{
+    private class TouchEvent implements TouchListener {
 
         @Override
         public void onTouchDown(int x, int y) {
             downX = x;
             downY = y;
-            //计算便宜矢量
+            //计算偏移矢量
             detaX += endX - downX;
             detaY += endY - downY;
 //            paintView.setTouchDown(x,y);
-
+//            if (detaX < 4 && detaY < 4) {
+//                sendSignal("*C1");
+//            }
         }
 
         @Override
@@ -126,16 +152,34 @@ public class TouchPadActivity extends AppCompatActivity {
 
 
 //            Log.i(TAG,"*x" + (int) (cur_x) + "y" + (int) (cur_y) + "\n");
-            sendSignal("*x" + (int) (cur_x) + "y" + (int) (cur_y) + "\n");
+
 //            paintView.setTouchMove(x,y);
             cur_x = x + detaX;
             cur_y = y + detaY;
+            sendSignal("*x" + (int) (cur_x) + "y" + (int) (cur_y) + "\n");
         }
 
         @Override
         public void onTouchUp(int x, int y) {
             endX = x;
             endY = y;
+//            arrx[xyindex] = abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old));
+//            xyindex++;
+//            if (xyindex > 7) {
+//                xyindex = 0;
+//            }
+//            double sum = 0;
+//            for (int i = 0; i < arrx.length; i++) {
+//                sum+=arrx[i];
+//            }
+
+            if (abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old)) < 15.0) {
+                sendSignal("*Cm\n");
+                Log.i(TAG, abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old))+"done");
+            }
+            Log.i(TAG, abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old))+" ");
+            cur_y_old = cur_y;
+            cur_x_old = cur_x;
 //            paintView.setTouchUp(x,y);
         }
     }
@@ -207,6 +251,7 @@ public class TouchPadActivity extends AppCompatActivity {
     private void msg(String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
