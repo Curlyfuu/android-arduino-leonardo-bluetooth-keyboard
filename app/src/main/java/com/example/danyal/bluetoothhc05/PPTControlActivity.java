@@ -13,8 +13,6 @@ import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -156,10 +154,7 @@ PPTControlActivity extends AppCompatActivity implements SensorEventListener {
     protected void onResume() {
         super.onResume();
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-//        mRegister1 = sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), sensorManager.SENSOR_DELAY_UI);
-//        mRegister2 = sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), sensorManager.SENSOR_DELAY_UI);
-//        mRegister1 = mSensorManager.registerListener(this,mAccelerometerSensor,SensorManager.SENSOR_DELAY_GAME);
-//        mRegister2= mSensorManager.registerListener(this,mMagneticSensor,SensorManager.SENSOR_DELAY_GAME);
+
         mSensorManager.registerListener(this, mOra, SensorManager.SENSOR_DELAY_GAME);
     }
 
@@ -173,14 +168,10 @@ PPTControlActivity extends AppCompatActivity implements SensorEventListener {
                 orientationValues[0] = sensorEvent.values[0];
                 orientationValues[1] = sensorEvent.values[1];
                 orientationValues[2] = sensorEvent.values[2];
-//                SensorSingleData data = mKalman.filter(new SensorSingleData(orientationValues[1], orientationValues[2], orientationValues[0]));
-//                Log.i(TAG,"*x" + (int) (orientationValues[0] * 10.0) + "y" + (int) (orientationValues[1] * 10.0) + "\n");
+
                 sendSignal("*x" + (int) (orientationValues[0] * 30.0) + "y" + (int) (orientationValues[1] * 30.0) + "\n");
-//                old_x = orientationValues[0];
-//                old_y = orientationValues[1];
 
 
-//            sendSignal("*x" + (int) (data.getAccX() * 40.0) + "y" + (int) (data.getAccZ() * 40.0) + "\n");
             }
         }
 

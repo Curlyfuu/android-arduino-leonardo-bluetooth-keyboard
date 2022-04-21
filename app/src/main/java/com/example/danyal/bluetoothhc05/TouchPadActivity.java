@@ -21,7 +21,6 @@ import static java.lang.Math.abs;
 
 
 public class TouchPadActivity extends AppCompatActivity {
-    //    Button btn_up, btn_dwn, btn_dis, btn_lb, btn_rb, btn_mid;
     TestView view;
     private static final String TAG = "HELLO";
     String address = null;
@@ -49,12 +48,7 @@ public class TouchPadActivity extends AppCompatActivity {
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
         new ConnectBT().execute();
-//        findViewById(R.id.button_lb).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                sendSignal("*C1\n");
-//            }
-//        });
+
         findViewById(R.id.button_lb).setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 if (v.getId() == R.id.button_lb) {
@@ -105,31 +99,9 @@ public class TouchPadActivity extends AppCompatActivity {
         view = (TestView) findViewById(R.id.testView);
 
         view.setTouchListener(new TouchEvent());
-//        Button btnClearResult = (Button)findViewById(R.id.btn_clear_result);
-//        Button btnClearTest = (Button)findViewById(R.id.btn_clear_test);
 
-//        EventClick eventClick = new EventClick();
-
-//        btnClearResult.setOnClickListener(eventClick);
-//        btnClearTest.setOnClickListener(eventClick);
     }
 
-
-//    private class EventClick implements View.OnClickListener {
-//
-//        @Override
-//        public void onClick(View v) {
-//            switch(v.getId()){
-//                case R.id.btn_clear_result:
-////                    paintView.reset();
-//                    break;
-//
-//                case R.id.btn_clear_test:
-//                    view.reset();
-//                    break;
-//            }
-//        }
-//    }
 
     private class TouchEvent implements TouchListener {
 
@@ -140,20 +112,12 @@ public class TouchPadActivity extends AppCompatActivity {
             //计算偏移矢量
             detaX += endX - downX;
             detaY += endY - downY;
-//            paintView.setTouchDown(x,y);
-//            if (detaX < 4 && detaY < 4) {
-//                sendSignal("*C1");
-//            }
+
         }
 
         @Override
         public void onTouchMove(int x, int y) {
-//            float tmpx = x + detaX;
 
-
-//            Log.i(TAG,"*x" + (int) (cur_x) + "y" + (int) (cur_y) + "\n");
-
-//            paintView.setTouchMove(x,y);
             cur_x = x + detaX;
             cur_y = y + detaY;
             sendSignal("*x" + (int) (cur_x) + "y" + (int) (cur_y) + "\n");
@@ -163,24 +127,15 @@ public class TouchPadActivity extends AppCompatActivity {
         public void onTouchUp(int x, int y) {
             endX = x;
             endY = y;
-//            arrx[xyindex] = abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old));
-//            xyindex++;
-//            if (xyindex > 7) {
-//                xyindex = 0;
-//            }
-//            double sum = 0;
-//            for (int i = 0; i < arrx.length; i++) {
-//                sum+=arrx[i];
-//            }
+
 
             if (abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old)) < 15.0) {
                 sendSignal("*Cm\n");
-                Log.i(TAG, abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old))+"done");
+                Log.i(TAG, abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old)) + "done");
             }
-            Log.i(TAG, abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old))+" ");
+            Log.i(TAG, abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old)) + " ");
             cur_y_old = cur_y;
             cur_x_old = cur_x;
-//            paintView.setTouchUp(x,y);
         }
     }
 

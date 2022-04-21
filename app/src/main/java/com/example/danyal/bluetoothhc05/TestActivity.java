@@ -14,10 +14,8 @@ import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -76,24 +74,17 @@ public class TestActivity extends AppCompatActivity implements SensorEventListen
         mMagneticSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         mOra = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 
-//        mKalman = new Kalman();
 
-//        findViewById(R.id.button_lb).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                sendSignal("*C1\n");
-//            }
-//        });
         findViewById(R.id.button_xlb).setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 if (v.getId() == R.id.button_xlb) {
                     if (event.getAction() == MotionEvent.ACTION_UP) {
                         sendSignal("*C^\n");
-                        send_flag=false;
+                        send_flag = false;
                     }
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {
                         sendSignal("*Cv\n");
-                        send_flag=true;
+                        send_flag = true;
                     }
                 }
                 return false;
@@ -183,40 +174,16 @@ public class TestActivity extends AppCompatActivity implements SensorEventListen
         view = (TestView) findViewById(R.id.testxView);
 
         view.setTouchListener(new TouchEvent());
-//        Button btnClearResult = (Button)findViewById(R.id.btn_clear_result);
-//        Button btnClearTest = (Button)findViewById(R.id.btn_clear_test);
-
-//        EventClick eventClick = new EventClick();
-
-//        btnClearResult.setOnClickListener(eventClick);
-//        btnClearTest.setOnClickListener(eventClick);
     }
 
 
-    //    private class EventClick implements View.OnClickListener {
-//
-//        @Override
-//        public void onClick(View v) {
-//            switch(v.getId()){
-//                case R.id.btn_clear_result:
-////                    paintView.reset();
-//                    break;
-//
-//                case R.id.btn_clear_test:
-//                    view.reset();
-//                    break;
-//            }
-//        }
-//    }
     @Override
     protected void onResume() {
         super.onResume();
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-//        mRegister1 = sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), sensorManager.SENSOR_DELAY_UI);
-//        mRegister2 = sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), sensorManager.SENSOR_DELAY_UI);
-        mRegister1 = mSensorManager.registerListener(this,mAccelerometerSensor,SensorManager.SENSOR_DELAY_GAME);
-        mRegister2= mSensorManager.registerListener(this,mMagneticSensor,SensorManager.SENSOR_DELAY_GAME);
-        mRegister3 = mSensorManager.registerListener(this,mOra,SensorManager.SENSOR_DELAY_GAME);
+        mRegister1 = mSensorManager.registerListener(this, mAccelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
+        mRegister2 = mSensorManager.registerListener(this, mMagneticSensor, SensorManager.SENSOR_DELAY_GAME);
+        mRegister3 = mSensorManager.registerListener(this, mOra, SensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override
@@ -229,54 +196,13 @@ public class TestActivity extends AppCompatActivity implements SensorEventListen
             orientationValues[2] = sensorEvent.values[2];
 
 
-
-//            orientationValues[0] = (float) Math.toDegrees(orientationValues[0]);
-//            orientationValues[1] = (float) Math.toDegrees(orientationValues[1]);
-//            orientationValues[2] = (float) Math.toDegrees(orientationValues[2]);
-
-//            textView1.setText("YAW:" + Float.toString(X_lateral).substring(0,5));
-//            textView2.setText("PIT:" + Float.toString(Y_longitudinal).substring(0,5));
-//            textView3.setText("ROL:" + Float.toString(Z_vertical).substring(0,5));
             if (send_flag) {
-//            SensorSingleData data = mKalman.filter(new SensorSingleData(orientationValues[1], orientationValues[2], orientationValues[0]));
-//            Log.i(TAG,"*x" + (int) (orientationValues[0] * 10.0) + "y" + (int) (orientationValues[2] * 10.0) + "\n");
-            sendSignal("*x" + (int) (orientationValues[0] * 15.0) + "y" + (int) (-orientationValues[2] * 15.0) + "\n");
-//            sendSignal("*x" + (int) (data.getAccX() * 40.0) + "y" + (int) (data.getAccZ() * 40.0) + "\n");
-        }
+                sendSignal("*x" + (int) (orientationValues[0] * 15.0) + "y" + (int) (-orientationValues[2] * 15.0) + "\n");
+            }
         }
 
     }
 
-//        switch (sensorEvent.sensor.getType()) {
-//            case Sensor.TYPE_ACCELEROMETER:
-//                aValues = sensorEvent.values.clone();
-//                break;
-//            case Sensor.TYPE_MAGNETIC_FIELD:
-//                mValues = sensorEvent.values.clone();
-//                break;
-//        }
-
-//        float[] R = new float[16];
-//        float[] orientationValues = new float[3];
-//
-//        SensorManager.getRotationMatrix(R, null, aValues, mValues);
-//        SensorManager.getOrientation(R, orientationValues);
-//
-//        orientationValues[0] = (float) Math.toDegrees(orientationValues[0]);
-//        orientationValues[1] = (float) Math.toDegrees(orientationValues[1]);
-//        orientationValues[2] = (float) Math.toDegrees(orientationValues[2]);
-
-
-//        String originTxt = "(pitch)x:"+orientationValues[1]+
-//                "\n(roll)y:"+orientationValues[2]+
-//                "\n(azimuth)z:"+orientationValues[0];
-//
-//        String showTxt = "(pitch)x:"+data.getAccX()+
-//                "\n(roll)y:"+data.getAccY()+
-//                "\n(azimuth)z:"+data.getAccZ();
-//        mTvOrigin.setText(originTxt);
-//        mTvShow.setText(showTxt);
-//
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
@@ -312,21 +238,13 @@ public class TestActivity extends AppCompatActivity implements SensorEventListen
             //计算偏移矢量
             detaX += endX - downX;
             detaY += endY - downY;
-//            paintView.setTouchDown(x,y);
-//            if (detaX < 4 && detaY < 4) {
-//                sendSignal("*C1");
-//            }
+
         }
 
         @Override
         public void onTouchMove(int x, int y) {
-//            float tmpx = x + detaX;
 
-
-//            Log.i(TAG,"*x" + (int) (cur_x) + "y" + (int) (cur_y) + "\n");
-
-//            paintView.setTouchMove(x,y);
-            send_flag=false;
+            send_flag = false;
             cur_x = x + detaX;
             cur_y = y + detaY;
             sendSignal("*x" + (int) (cur_x) + "y" + (int) (cur_y) + "\n");
@@ -336,24 +254,9 @@ public class TestActivity extends AppCompatActivity implements SensorEventListen
         public void onTouchUp(int x, int y) {
             endX = x;
             endY = y;
-//            arrx[xyindex] = abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old));
-//            xyindex++;
-//            if (xyindex > 7) {
-//                xyindex = 0;
-//            }
-//            double sum = 0;
-//            for (int i = 0; i < arrx.length; i++) {
-//                sum+=arrx[i];
-//            }
 
-//            if (abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old)) < 15.0) {
-//                sendSignal("*Cm\n");
-//                Log.i(TAG, abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old))+"done");
-//            }
-//            Log.i(TAG, abs((int) (cur_y - cur_y_old)) + abs((int) (cur_x - cur_x_old))+" ");
             cur_y_old = cur_y;
             cur_x_old = cur_x;
-//            paintView.setTouchUp(x,y);
         }
     }
 

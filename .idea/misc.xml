@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.2718334297281666" />
         <entry key="app/src/main/res/layout-land/activity_shortcut.xml" value="0.37747747747747745" />
+        <entry key="app/src/main/res/layout/activity_device_list.xml" value="0.21822916666666667" />
+        <entry key="app/src/main/res/layout/activity_ppt_control.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/activity_shortcut.xml" value="0.21822916666666667" />
       </map>
     </option>
