@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Android-App-HC05-Arduino.iml" filepath="$PROJECT_DIR$/Android-App-HC05-Arduino.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-App-HC05-Arduino.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-App-HC05-Arduino.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-arduino-leonardo-bluetooth-keyboard.iml" filepath="$PROJECT_DIR$/.idea/modules/android-arduino-leonardo-bluetooth-keyboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-arduino-leonardo-bluetooth-keyboard.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-arduino-leonardo-bluetooth-keyboard.app.iml" />
     </modules>
   </component>
 </project>

@@ -11,14 +11,16 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:background="#ddd">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Touch Pad"
+            android:text="触摸板"
             android:textSize="30sp"
             android:textColor="@android:color/black"
-            android:textAlignment="center">
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal">
         </TextView>
 
 
@@ -32,7 +34,7 @@
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/shape" />
+            android:background="@drawable/shapebbb" />
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal"
             android:layout_width="match_parent"

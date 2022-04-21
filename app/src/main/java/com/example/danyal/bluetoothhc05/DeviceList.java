@@ -19,7 +19,7 @@ import java.util.Set;
 public class DeviceList extends AppCompatActivity {
 
     Button btnPaired;
-//    TextView textView_label;
+    //    TextView textView_label;
     ListView devicelist;
 
     private BluetoothAdapter myBluetooth = null;
@@ -27,6 +27,7 @@ public class DeviceList extends AppCompatActivity {
     private int torC = 0;//触控板或者ppt模式
     public static String EXTRA_ADDRESS = "device_address";
     Button btn_tpad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +57,15 @@ public class DeviceList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 torC += 1;
-                if(torC>2){
-                    torC=0;
-                }if(torC==0){
-                    btn_tpad.setText("PPT");
-                }else if(torC==1){
-                    btn_tpad.setText("TPA");
-                }else{
-                    btn_tpad.setText("GYC");
+                if (torC > 2) {
+                    torC = 0;
+                }
+                if (torC == 0) {
+                    btn_tpad.setText("幻灯片");
+                } else if (torC == 1) {
+                    btn_tpad.setText("触控板");
+                } else {
+                    btn_tpad.setText("游戏");
                 }
             }
         });
@@ -92,16 +94,16 @@ public class DeviceList extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String info = ((TextView) view).getText().toString();
             String address = info.substring(info.length() - 17);
-            if(torC==1){
-                Intent i = new Intent(DeviceList.this, TestActivity.class);
+            if (torC == 1) {
+                Intent i = new Intent(DeviceList.this, TouchPadActivity.class);
                 i.putExtra(EXTRA_ADDRESS, address);
                 startActivity(i);
-            } else if(torC==0){
+            } else if (torC == 0) {
                 Intent i = new Intent(DeviceList.this, PPTControlActivity.class);
                 i.putExtra(EXTRA_ADDRESS, address);
                 startActivity(i);
-            }else{
-                Intent i = new Intent(DeviceList.this, GyroControlActivity.class);
+            } else {
+                Intent i = new Intent(DeviceList.this, TestActivity.class);
                 i.putExtra(EXTRA_ADDRESS, address);
                 startActivity(i);
             }

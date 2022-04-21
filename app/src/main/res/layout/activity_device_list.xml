@@ -10,24 +10,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#ddd"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Select A Pairing Device"
-                android:textColor="#0033FF"
+                android:text="选择设备"
+                android:textColor="#000"
                 android:textSize="16dp"
+                android:textAlignment="center"
                 tools:layout_editor_absoluteX="168dp"
-                tools:layout_editor_absoluteY="134dp" />
+                tools:layout_editor_absoluteY="134dp"
+                android:gravity="center_horizontal" />
 
             <Button
                 android:id="@+id/button"
@@ -35,8 +39,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/holo_blue_light"
-                android:text="Pair"
+                android:background="@drawable/shape"
+                android:text="已配对"
                 tools:layout_editor_absoluteX="190dp"
                 tools:layout_editor_absoluteY="183dp" />
         </LinearLayout>
@@ -47,8 +51,10 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="125dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -57,18 +63,19 @@
                     android:text="选择功能"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp">
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal">
 
                 </TextView>
 
                 <Button
                     android:id="@+id/button_tpad"
-                    android:layout_width="140dp"
-                    android:layout_height="63dp"
+                    android:layout_width="match_parent"
                     android:layout_marginTop="20dp"
-                    android:layout_margin="10dp"
+                    android:layout_height="70dp"
                     android:background="@drawable/shape"
-                    android:text="PPT"></Button>
+                    android:textSize="22dp"
+                    android:text="幻灯片"></Button>
 
             </LinearLayout>
 
@@ -76,10 +83,13 @@
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shapebbb"
                 android:footerDividersEnabled="false"
                 tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp" />
+                tools:layout_editor_absoluteY="8dp"
+                android:layout_weight="1"/>
         </LinearLayout>
 
     </LinearLayout>

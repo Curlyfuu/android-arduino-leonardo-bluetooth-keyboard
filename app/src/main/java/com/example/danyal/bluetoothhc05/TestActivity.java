@@ -54,7 +54,6 @@ public class TestActivity extends AppCompatActivity implements SensorEventListen
     private float[] aValues = new float[3];
     private float[] mValues = new float[3];
 
-    private Kalman mKalman;
 
 //    private Kalman mKalman;
 
@@ -77,7 +76,7 @@ public class TestActivity extends AppCompatActivity implements SensorEventListen
         mMagneticSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         mOra = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 
-        mKalman = new Kalman();
+//        mKalman = new Kalman();
 
 //        findViewById(R.id.button_lb).setOnClickListener(new View.OnClickListener() {
 //            @Override
